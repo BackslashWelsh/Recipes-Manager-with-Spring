@@ -1,0 +1,59 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.3.1.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+}
+
+sourceCompatibility = 11
+
+repositories {
+    mavenCentral()
+    maven { url "https://jitpack.io" }
+}
+
+// Define the main & test class for the application.
+sourceSets {
+    main.java.srcDir 'src'
+    main.resources.srcDir 'resources'
+    test.java.srcDir 'test'
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+
+    // lombok
+    compileOnly 'org.projectlombok:lombok:1.18.16'
+    annotationProcessor 'org.projectlombok:lombok:1.18.16'
+
+    testCompileOnly 'org.projectlombok:lombok:1.18.16'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.16'
+
+    runtimeOnly 'com.h2database:h2'
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+
+    // test dependency for hyperskill tests
+    testImplementation('com.github.hyperskill:hs-test:release-SNAPSHOT')
+}
+
+configurations.all {
+    resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+}
+
+test {
+    systemProperty "file.encoding", "utf-8"
+    outputs.upToDateWhen { false }
+}
+
+compileJava.options.encoding = 'utf-8'
+tasks.withType(JavaCompile) {
+    options.encoding = 'utf-8'
+}
