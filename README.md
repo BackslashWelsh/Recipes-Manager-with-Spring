@@ -1,7 +1,7 @@
 # Recipe-Manager-with-Spring
 
 <h3>Recipe Manager with Spring and H2 database.</h3>
-What project currently have:
+<h4>What project currently have:</h4>
 
  - Bidirectional @OneToMany relationship database: User can have many Recipes;
  - Basic registration and authorization systems;
@@ -11,7 +11,7 @@ What project currently have:
  - Recipe service have basic CRUD operations and a search by name or category.
 <hr>
  
-The main problems when creating this project:
+<h4>The main problems when creating this project:</h4>
 <ol>
  <li>Program throw Exception when I use a repository in custom Constraint Validator.</li>
 <p>Spring makes validation (first time) of fields and uses the repository when you pass an entity through a controller. 
